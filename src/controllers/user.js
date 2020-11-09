@@ -1,3 +1,4 @@
+const Joi = require('@hapi/joi');
 const db = require('./../database/models');
 
 const getUsers = async (req, res) => {
@@ -15,6 +16,20 @@ const getUsers = async (req, res) => {
 };
 
 const addUser = async (req, res) => {
+  const schema = Joi.object().keys({
+    name: Joi.string(),
+    flight: Joi.string().max(5).required()
+  });
+
+  try {
+    await schema.validateAsync(req.body);
+  } catch (err) {
+    return res.status(400).send({
+      error: 'invalid_params',
+      metadata: err.details
+    });
+  }
+
   const payload = {...req.body};
   const user = await db.User.create(payload);
   res.send({

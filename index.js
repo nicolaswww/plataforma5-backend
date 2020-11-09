@@ -1,4 +1,4 @@
-require('dotenv-safe').config();
+require('dotenv-safe').config({allowEmptyValues: true});
 
 const app = require('./src/app.js');
 const {PORT} = process.env;

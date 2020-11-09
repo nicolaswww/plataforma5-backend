@@ -5,11 +5,13 @@ module.exports = {
     await queryInterface.bulkInsert('Users', [{
       name: 'John Doe',
       flight: 'AR662',
+      status: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
       name: 'Carlos Rafael',
       flight: 'PT223',
+      status: 1,
       createdAt: new Date(),
       updatedAt: new Date()
     }, {
